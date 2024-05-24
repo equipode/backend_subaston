@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Ubicacion } from "./Ubicaciones";
 import { User } from "./User";
 
@@ -19,4 +19,10 @@ export class Cliente extends BaseEntity {
 
     @ManyToOne(() => User, user => user.clientes)
     fk_ubicacion: User;
+
+    @CreateDateColumn()
+    createAt: Date;
+
+    @UpdateDateColumn()
+    updateAt: Date;
 }

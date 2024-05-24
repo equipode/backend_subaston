@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Cliente } from "./Cliente";
 import { User } from "./User";
 
@@ -19,5 +19,11 @@ export class Ubicacion extends BaseEntity {
 
     @OneToMany(() => Cliente, cliente => cliente.fk_user)
     clientes: Cliente[];
+
+    @CreateDateColumn()
+    createAt: Date;
+
+    @UpdateDateColumn()
+    updateAt: Date;
 
 }
