@@ -1,18 +1,19 @@
-import "reflect-metadata"
-import { DataSource } from "typeorm"
-import { Cliente } from "./entity/Cliente"
-import { Role } from "./entity/Role"
-import { Ubicacion } from "./entity/Ubicaciones"
-import { User } from "./entity/User"
+import "reflect-metadata";
+import { DataSource } from "typeorm";
+import { config } from "./config/config";
+import { Cliente } from "./models/Cliente";
+import { Role } from "./models/Role";
+import { Ubicacion } from "./models/Ubicaciones";
+import { User } from "./models/User";
 
 
 export const AppDataSource = new DataSource({
     type: "mysql",
-    host: "localhost",
-    port: 3306,
-    username: "root",
-    password: "123456789",
-    database: "db_subaston_pro",
+    host: config.dbHost,
+    port: Number(config.dbPort),
+    username: config.dbuser,
+    password: config.dbPassword,
+    database: config.dbName,
     synchronize: true,
     logging: false,
     entities: [Role, User, Ubicacion, Cliente],
