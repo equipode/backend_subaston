@@ -1,8 +1,12 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { config } from "./config/config";
+import { Categoria } from "./models/Categoria";
 import { Cliente } from "./models/Cliente";
+import { Producto } from "./models/Producto";
+import { RangoPrecio } from "./models/Rango_precio";
 import { Role } from "./models/Role";
+import { Subasta } from "./models/Subasta";
 import { Ubicacion } from "./models/Ubicaciones";
 import { User } from "./models/User";
 
@@ -16,7 +20,7 @@ export const AppDataSource = new DataSource({
     database: config.dbName,
     synchronize: true,
     logging: false,
-    entities: [Role, User, Ubicacion, Cliente],
+    entities: [Role, User, Ubicacion, Cliente, Categoria, RangoPrecio, Producto, Subasta],
     migrations: [],
     subscribers: [],
-})
+});

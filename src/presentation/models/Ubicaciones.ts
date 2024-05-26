@@ -1,5 +1,6 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Cliente } from "./Cliente";
+import { Producto } from "./Producto";
 import { User } from "./User";
 
 @Entity('ubicaciones')
@@ -19,6 +20,9 @@ export class Ubicacion extends BaseEntity {
 
     @OneToMany(() => Cliente, cliente => cliente.fk_user)
     clientes: Cliente[];
+
+    @OneToMany(() => Producto, producto => producto.fk_ubicacion)
+    productos: Producto[];
 
     @CreateDateColumn()
     createAt: Date;

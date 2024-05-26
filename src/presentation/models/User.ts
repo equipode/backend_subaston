@@ -1,6 +1,8 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { Cliente } from './Cliente';
+import { Producto } from './Producto';
 import { Role } from './Role';
+import { Subasta } from './Subasta';
 import { Ubicacion } from './Ubicaciones';
 
 @Entity('usuarios')
@@ -32,6 +34,12 @@ export class User extends BaseEntity {
 
     @OneToMany(() => Cliente, cliente => cliente.fk_user)
     clientes: Cliente[];
+
+    @OneToMany(() => Producto, producto => producto.fk_user)
+    productos: Producto[];
+
+    @OneToMany(() => Subasta, subasta => subasta.fk_user)
+    subastas: Subasta[];
 
     @CreateDateColumn()
     createAt: Date;
