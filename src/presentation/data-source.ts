@@ -9,6 +9,8 @@ import { Role } from "./models/Role";
 import { Subasta } from "./models/Subasta";
 import { Ubicacion } from "./models/Ubicaciones";
 import { User } from "./models/User";
+import { MetodoPago} from "./models/Metodos_pago";
+import { Venta } from "./models/Venta";
 
 
 export const AppDataSource = new DataSource({
@@ -20,7 +22,7 @@ export const AppDataSource = new DataSource({
     database: config.dbName,
     synchronize: true,
     logging: false,
-    entities: [Role, User, Ubicacion, Cliente, Categoria, RangoPrecio, Producto, Subasta],
+    entities: [Role, User, Ubicacion, Cliente, Categoria, RangoPrecio, Producto, Subasta, MetodoPago, Venta],
     migrations: [],
     subscribers: [],
 });

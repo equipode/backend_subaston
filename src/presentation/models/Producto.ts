@@ -4,6 +4,7 @@ import { RangoPrecio } from "./Rango_precio";
 import { Subasta } from "./Subasta";
 import { Ubicacion } from "./Ubicaciones";
 import { User } from "./User";
+import { Venta } from "./Venta";
 
 @Entity('productos')
 export class Producto extends BaseEntity {
@@ -53,6 +54,9 @@ export class Producto extends BaseEntity {
     @OneToMany(() => Subasta, subasta => subasta.fk_product)
     productos: Subasta[];
 
+    @OneToMany(() => Venta, venta => venta.fk_producto)
+    ventas: Venta[];
+    
     @CreateDateColumn()
     createAt: Date;
 
