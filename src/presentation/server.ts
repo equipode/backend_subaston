@@ -1,4 +1,5 @@
 import express, { Router } from 'express';
+import { AppDataSource } from './data-source';
 
 interface Options {
     port?: number;
@@ -20,7 +21,7 @@ export class Server {
 
 
     async start() {
-
+        await AppDataSource.initialize();
         //Usar las rutas
         this.app.use(this.routes);
 
