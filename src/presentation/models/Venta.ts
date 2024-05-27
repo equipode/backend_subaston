@@ -2,6 +2,7 @@ import { BaseEntity, Column, CreateDateColumn,  Entity, ManyToOne, OneToMany, Pr
 import { MetodoPago } from "./Metodos_pago";
 import { Cliente } from "./Cliente";
 import { Producto } from "./Producto";
+import { Chat } from "./Chats";
 
 @Entity('ventas')
 export class Venta extends BaseEntity{
@@ -29,6 +30,9 @@ export class Venta extends BaseEntity{
     
     @ManyToOne(() => Producto, producto => producto.ventas)
     fk_producto: Producto;
+
+    @OneToMany(() => Chat, cha => cha.fk_venta)
+    ventas: Chat[];
 
     @CreateDateColumn()
     createAt: Date;

@@ -11,6 +11,8 @@ import { Ubicacion } from "./models/Ubicaciones";
 import { User } from "./models/User";
 import { MetodoPago} from "./models/Metodos_pago";
 import { Venta } from "./models/Venta";
+import { Chat } from "./models/Chats";
+import { MensajesChat } from "./models/Mensajes_chat";
 
 
 export const AppDataSource = new DataSource({
@@ -22,7 +24,7 @@ export const AppDataSource = new DataSource({
     database: config.dbName,
     synchronize: true,
     logging: false,
-    entities: [Role, User, Ubicacion, Cliente, Categoria, RangoPrecio, Producto, Subasta, MetodoPago, Venta],
+    entities: [Role, User, Ubicacion, Cliente, Categoria, RangoPrecio, Producto, Subasta, MetodoPago, Venta, Chat, MensajesChat],
     migrations: [],
     subscribers: [],
 });
