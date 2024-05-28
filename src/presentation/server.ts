@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express, { Router } from 'express';
 import { AppDataSource } from './data-source';
 
@@ -22,6 +23,14 @@ export class Server {
 
     async start() {
         await AppDataSource.initialize();
+
+        //Configurar el cors
+        this.app.use(cors());
+
+        //Convertir los datos del body a objeto js
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: true }));
+
         //Usar las rutas
         this.app.use(this.routes);
 
