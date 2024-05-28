@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { AuthController } from "../../controllers/auth/controller";
+import { auth } from "../../middlewares/auth.middlewar";
 
 const authController = new AuthController();
 export class AuthRoutes {
@@ -10,7 +11,7 @@ export class AuthRoutes {
 
         //Definir Rutas principales
         router.post('/login', authController.login);
-        router.post('/register', (req, res) => {
+        router.post('/register', auth, (req, res) => {
             res.json('Register')
         });
 
