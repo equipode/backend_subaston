@@ -1,4 +1,4 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { Cliente } from './Cliente';
 import { Producto } from './Producto';
 import { Role } from './Role';
@@ -23,11 +23,15 @@ export class User extends BaseEntity {
     @Column("char", { length: 50 })
     nit: string;
 
-    @Column("int")
+    @Column("int", { default: true })
     estado: boolean;
 
+    @Column()
+    fk_rol: number;
+
     @ManyToOne(() => Role, role => role.users)
-    fk_rol: Role;
+    @JoinColumn({ name: "fk_rol" })
+    role: Role;
 
     @OneToMany(() => Ubicacion, ubicacion => ubicacion.fk_user)
     ubicaciones: User[];
