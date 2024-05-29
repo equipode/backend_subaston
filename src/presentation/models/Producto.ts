@@ -1,4 +1,4 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Categoria } from "./Categoria";
 import { RangoPrecio } from "./Rango_precio";
 import { Subasta } from "./Subasta";
@@ -39,24 +39,40 @@ export class Producto extends BaseEntity {
     @Column("time")
     hora_subasta: string;
 
+    @Column()
+    fk_categoria: number;
+
     @ManyToOne(() => Categoria, categoria => categoria.productos)
-    fk_categoria: Categoria;
+    @JoinColumn({ name: "fk_categoria" })
+    categoria: Categoria;
+
+    @Column()
+    fk_rango_precio: number;
 
     @ManyToOne(() => RangoPrecio, rango_precio => rango_precio.productos)
-    fk_rango_precio: RangoPrecio;
+    @JoinColumn({ name: "fk_rango_precio" })
+    rango_precio: RangoPrecio;
+
+    @Column()
+    fk_user: number;
 
     @ManyToOne(() => User, user => user.productos)
-    fk_user: User;
+    @JoinColumn({ name: "fk_user" })
+    user: User;
+
+    @Column()
+    fk_ubicacion: number;
 
     @ManyToOne(() => Ubicacion, ubicacion => ubicacion.productos)
-    fk_ubicacion: Ubicacion;
+    @JoinColumn({ name: "fk_ubicacion" })
+    ubicacion: Ubicacion;
 
     @OneToMany(() => Subasta, subasta => subasta.fk_product)
     productos: Subasta[];
 
     @OneToMany(() => Venta, venta => venta.fk_producto)
     ventas: Venta[];
-    
+
     @CreateDateColumn()
     createAt: Date;
 

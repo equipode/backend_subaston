@@ -1,4 +1,4 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Cliente } from "./Cliente";
 import { Producto } from "./Producto";
 import { User } from "./User";
@@ -15,8 +15,12 @@ export class Ubicacion extends BaseEntity {
     @Column("char", { length: 20 })
     ciudad: string;
 
+    @Column()
+    fk_user: number;
+
     @ManyToOne(() => User, user => user.ubicaciones)
-    fk_user: User;
+    @JoinColumn({ name: "fk_user" })
+    user: User;
 
     @OneToMany(() => Cliente, cliente => cliente.fk_user)
     clientes: Cliente[];

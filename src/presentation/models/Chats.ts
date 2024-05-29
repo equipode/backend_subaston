@@ -1,6 +1,6 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Venta } from "./Venta";
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { MensajesChat } from "./Mensajes_chat";
+import { Venta } from "./Venta";
 
 @Entity('chats')
 export class Chat extends BaseEntity {
@@ -8,11 +8,15 @@ export class Chat extends BaseEntity {
     @PrimaryGeneratedColumn()
     pk_chat: number;
 
-    @Column("int" )
+    @Column("int")
     estado: number;
 
-    @ManyToOne(()=> Venta, venta => venta.ventas)
-    fk_venta: Venta;
+    @Column()
+    fk_venta: number;
+
+    @ManyToOne(() => Venta, venta => venta.ventas)
+    @JoinColumn({ name: "fk_venta" })
+    venta: Venta;
 
     @OneToMany(() => MensajesChat, mensajeschat => mensajeschat.fk_chat)
     chats: MensajesChat[];
@@ -21,5 +25,5 @@ export class Chat extends BaseEntity {
     createAt: Date;
 
     @UpdateDateColumn()
-    updateAt:Date;
+    updateAt: Date;
 }
