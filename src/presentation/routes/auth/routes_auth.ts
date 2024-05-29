@@ -13,7 +13,7 @@ export class AuthRoutes {
 
         //Definir Rutas principales
         router.post('/login', authController.login);
-        router.post('/register', userController.crearUser);
+        router.post('/crearUser', userController.crearUser);
         router.post('/pruebas', auth, (req, res) => {
             res.json('Register')
         });
