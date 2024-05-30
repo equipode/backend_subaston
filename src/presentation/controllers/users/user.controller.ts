@@ -14,7 +14,7 @@ export class UserController {
         if (!params.usuario || !params.nit || !params.contrasenia || !params.foto_perfil || !params.fk_rol) {
             return res.status(422).json({
                 status: 'error',
-                messaje: 'Faltan datos por enviar',
+                message: 'Faltan datos por enviar',
             });
         } else {
             const userValidate = await User.findOneBy({
@@ -32,14 +32,14 @@ export class UserController {
                     user.save();
                     return res.status(200).json({
                         status: 'success',
-                        messaje: 'Usuario Registrado',
+                        message: 'Usuario Registrado',
                         user
                     });
                 }).catch((error) => {
 
                 });
             } else {
-                return res.status(200).json({
+                return res.status(400).json({
                     status: 'success',
                     message: 'El usuario ya existe'
                 });

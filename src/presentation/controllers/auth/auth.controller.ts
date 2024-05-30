@@ -10,7 +10,7 @@ export class AuthController {
         if (!params.usuario || !params.contrasenia) {
             return res.status(422).json({
                 status: 'error',
-                messaje: 'Faltan datos por enviar',
+                message: 'Faltan datos por enviar',
             });
         } else {
             const userValidate = await User.findOneBy({
