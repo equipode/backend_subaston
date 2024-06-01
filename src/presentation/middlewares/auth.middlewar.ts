@@ -5,7 +5,7 @@ import { secret } from "../services/jwt/jwt.service";
 const secrets = secret;
 
 //MIDLEWARE de autentication}
-export const auth = (req: any, res: any, next: any) => {
+export const authMildleware = (req: any, res: any, next: any) => {
     //Comprobar si me llega la cabezera de autenticacion
     if (!req.headers.authorization) {
         return res.status(403).json({
