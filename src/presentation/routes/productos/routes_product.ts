@@ -11,6 +11,7 @@ export class ProductoRoutes {
 
         //Definir Rutas principales
         router.get('/', productController.productos);
+        router.post('/crear', productController.crearProducto);
 
         return router;
     }
