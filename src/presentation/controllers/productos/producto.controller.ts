@@ -16,6 +16,21 @@ export class ProductoController {
 
     }
 
+    async productoPorUsuario(req: any, res: any) {
+
+        const idUser = req.query.idUser;
+
+        const result = await AppDataSource.query(
+            `SELECT * FROM productos WHERE fk_user=${idUser};`
+        );
+
+        return res.status(200).json({
+            status: 'success',
+            message: result
+        });
+
+    }
+
     async crearProducto(req: any, res: any) {
 
         //Recoger datos de la petición
@@ -70,5 +85,20 @@ export class ProductoController {
                 });
             }
         }
+    }
+
+    async eliminarProducto(req: any, res: any) {
+
+        const idProducto = req.query.idProducto;
+
+        await AppDataSource.query(
+            `DELETE FROM productos WHERE pk_prod=${idProducto};`
+        );
+
+        return res.status(200).json({
+            status: 'success',
+            message: 'Producto Eliminado'
+        });
+
     }
 }
