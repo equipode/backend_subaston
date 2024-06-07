@@ -95,6 +95,8 @@ export class ProductoController {
             `DELETE FROM productos WHERE pk_prod=${idProducto};`
         );
 
+        io?.emit('nuevo_producto');
+
         return res.status(200).json({
             status: 'success',
             message: 'Producto Eliminado'
